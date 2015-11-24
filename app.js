@@ -23,7 +23,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(orm.express("pg://deploy:deploy@localhost/library_management", {
+var connectionString = "pg://deploy:deploy@localhost/library_management";
+if(process.env.NODE_ENV == 'production') {
+  connectionString = "pg://yojsgwzvposizl:jmDayc06kZtdkTT7hHBux3FoRz@ec2-54-227-248-123.compute-1.amazonaws.com/db0ad1if5bjie2";
+}
+app.use(orm.express(connectionString, {
   define: function (db, models, next) {
     models.User = db.define("users", {
       name: String,
