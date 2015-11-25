@@ -11,7 +11,8 @@ router.get('/', function(req, res, next) {
   var scope = req.models.User.find({});
   if(search_params.q !== "") {
     query = "lower(email) like ? or lower(name) like ?"
-    query_params.push("%"+search_params.q+"%")
+    query_params.push(search_params.q+"%")
+    query_params.push(search_params.q+"%")
     scope = scope.where(query,query_params);
   }
   var users = scope.all(function(err,users){
