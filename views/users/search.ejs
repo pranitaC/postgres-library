@@ -5,13 +5,10 @@
 
 <body>
   <h1>Search Users...</h1>
-  <form action="/users/search" method="get">
+  <form action="/" method="get">
     <div>
       <div>
-        Search by name: <input type="text" value="<%= search_params.name %>" name="search[name]"/>
-      </div>
-      <div>
-        Search by email: <input type="text" value="<%= search_params.email %>" name="search[email]"/>
+        Search by name or email: <input type="text" value="<%= search_params.q %>" name="search[q]"/>
       </div>
     </div>
     <div>
